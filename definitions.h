@@ -7,9 +7,6 @@
 //Options
 #define OPV_ROSTER_CLIENT_ICON_SHOW "roster.client.icon.show"
 
-//Opton Nodes
-#define OPN_CLIENTICONS "UserMood"
-
 //Option Widget Order
 #define OWO_ROSTER_CLIENT_ICONS 515
 

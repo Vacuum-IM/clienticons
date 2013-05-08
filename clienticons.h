@@ -111,8 +111,8 @@ private:
 	INotifications *FNotifications;
 
 private:
-	bool FShowClientIcons;
-	quint32 FClientIconLabelId;
+	bool FClientIconsVisible;
+	quint32 FClientIconsLabelId;
 
 	QMap<Jid, int> FSHIPresence;
 

@@ -1,10 +1,8 @@
 #include "clienticons.h"
 
 #define RDR_CLIENTICONS 460
-
 #define PROPERTY_CLIENT "client"
-
-#define SHC_PRESENCE              "/presence/c[@xmlns="NS_CAPS"]"
+#define SHC_PRESENCE  "/presence/c[@xmlns="NS_CAPS"]"
 
 static const QList<int> RosterKinds = QList<int>() << RIK_CONTACT << RIK_CONTACTS_ROOT;
 
@@ -19,8 +17,7 @@ ClientIcons::ClientIcons()
 	FRosterPlugin = NULL;
 	FRostersModel = NULL;
 	FRostersViewPlugin = NULL;
-
-	FClientIconLabelId = 0;
+	FClientIconsLabelId = 0;
 
 #ifdef DEBUG_RESOURCES_DIR
 	FileStorage::setResourcesDirs(FileStorage::resourcesDirs() << DEBUG_RESOURCES_DIR);
@@ -35,7 +32,7 @@ ClientIcons::~ClientIcons()
 void ClientIcons::pluginInfo(IPluginInfo *APluginInfo)
 {
 	APluginInfo->name = tr("Client Icons");
-	APluginInfo->description = tr("Displays a client icon in the roster that uses the contact");
+	APluginInfo->description = tr("Displays a client icon in the roster");
 	APluginInfo->version = "0.1";
 	APluginInfo->author = "Alexey Ivanov aka krab";
 	APluginInfo->homePage = "http://code.google.com/p/vacuum-plugins";
@@ -112,12 +109,14 @@ bool ClientIcons::initConnections(IPluginManager *APluginManager, int &AInitOrde
 	if(plugin)
 	{
 		FOptionsManager = qobject_cast<IOptionsManager *>(plugin->instance());
+		if (FOptionsManager)
+		{
+			connect(Options::instance(),SIGNAL(optionsOpened()),SLOT(onOptionsOpened()));
+			connect(Options::instance(),SIGNAL(optionsChanged(OptionsNode)),SLOT(onOptionsChanged(OptionsNode)));
+		}
 	}
 
-	connect(Options::instance(),SIGNAL(optionsOpened()),SLOT(onOptionsOpened()));
-	connect(Options::instance(),SIGNAL(optionsChanged(OptionsNode)),SLOT(onOptionsChanged(OptionsNode)));
-
-	return FMainWindowPlugin != NULL && FRosterPlugin !=NULL;
+	return FMainWindowPlugin != NULL && FRosterPlugin != NULL && FPresencePlugin != NULL && FXmppStreams != NULL;
 }
 
 bool ClientIcons::initObjects()
@@ -140,7 +139,7 @@ bool ClientIcons::initObjects()
 		AdvancedDelegateItem label(RLID_CLIENTICONS);
 		label.d->kind = AdvancedDelegateItem::CustomData;
 		label.d->data = RDR_CLIENTICONS;
-		FClientIconLabelId = FRostersViewPlugin->rostersView()->registerLabel(label);
+		FClientIconsLabelId = FRostersViewPlugin->rostersView()->registerLabel(label);
 
 		FRostersViewPlugin->rostersView()->insertLabelHolder(RLHO_CLIENTICONS,this);
 	}
@@ -203,8 +202,6 @@ QVariant ClientIcons::rosterData(int AOrder, const IRosterIndex *AIndex, int ARo
 		switch (AIndex->kind())
 		{
 		case RIK_CONTACT:
-		//case RIK_STREAM_ROOT:
-		//case RIK_CONTACTS_ROOT:
 			{
 				if (ARole == RDR_CLIENTICONS)
 				{
@@ -229,8 +226,8 @@ bool ClientIcons::setRosterData(int AOrder, const QVariant &AValue, IRosterIndex
 QList<quint32> ClientIcons::rosterLabels(int AOrder, const IRosterIndex *AIndex) const
 {
 	QList<quint32> labels;
-	if (AOrder==RLHO_CLIENTICONS && FShowClientIcons && !AIndex->data(RDR_CLIENTICONS).isNull())
-		labels.append(FClientIconLabelId);
+	if (AOrder==RLHO_CLIENTICONS && FClientIconsVisible && !AIndex->data(RDR_CLIENTICONS).isNull())
+		labels.append(FClientIconsLabelId);
 	return labels;
 }
 
@@ -243,7 +240,7 @@ AdvancedDelegateItem ClientIcons::rosterLabel(int AOrder, quint32 ALabelId, cons
 
 void ClientIcons::onRostersViewIndexToolTips(IRosterIndex *AIndex, quint32 ALabelId, QMap<int, QString> &AToolTips)
 {
-	if ((ALabelId==AdvancedDelegateItem::DisplayId && RosterKinds.contains(AIndex->kind())) || ALabelId == FClientIconLabelId)
+	if ((ALabelId==AdvancedDelegateItem::DisplayId && RosterKinds.contains(AIndex->kind())) || ALabelId == FClientIconsLabelId)
 	{
 		Jid contactJid = AIndex->data(RDR_FULL_JID).toString();
 		if (!contactClient(contactJid).isEmpty())
@@ -310,8 +307,8 @@ void ClientIcons::onOptionsChanged(const OptionsNode &ANode)
 {
 	if (ANode.path() == OPV_ROSTER_CLIENT_ICON_SHOW)
 	{
-		FShowClientIcons = ANode.value().toBool();
-		emit rosterLabelChanged(FClientIconLabelId,NULL);
+		FClientIconsVisible = ANode.value().toBool();
+		emit rosterLabelChanged(FClientIconsLabelId,NULL);
 	}
 }
 
