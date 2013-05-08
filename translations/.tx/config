@@ -1,6 +1,6 @@
 [main]
 host = https://www.transifex.com
 
-[vacuum-im.usermoodts]
-file_filter = <lang>/usermood.ts
+[vacuum-im.clienticonsts]
+file_filter = <lang>/clienticons.ts
 source_lang = ru
