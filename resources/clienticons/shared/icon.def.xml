@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<icondef>
+  <icon>
+    <key>http://vacuum-im.googlecode.com</key>
+    <client>Vacuum-IM</client>
+    <object mime="image/png">vacuum.png</object>
+  </icon>
+  <icon>
+    <key>http://qip.ru/caps</key>
+    <client>QIP</client>
+    <object mime="image/png">qip.png</object>
+  </icon>
+  <icon>
+    <key>http://psi-dev.googlecode.com/caps</key>
+    <client>Psi+</client>
+    <object mime="image/png">psiplus.png</object>
+  </icon>
+  <icon>
+    <key>http://miranda-im.org/caps</key>
+    <client>Miranda IM</client>
+    <object mime="image/png">miranda.png</object>
+  </icon>
+</icondef>
