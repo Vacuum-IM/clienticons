@@ -4,7 +4,7 @@
 
 #define PROPERTY_CLIENT "client"
 
-#define SHC_PRESENCE              "/presence/c[@xmlns=http://jabber.org/protocol/caps]"
+#define SHC_PRESENCE              "/presence/c[@xmlns="NS_CAPS"]"
 
 static const QList<int> RosterKinds = QList<int>() << RIK_CONTACT << RIK_CONTACTS_ROOT;
 
@@ -114,6 +114,9 @@ bool ClientIcons::initConnections(IPluginManager *APluginManager, int &AInitOrde
 		FOptionsManager = qobject_cast<IOptionsManager *>(plugin->instance());
 	}
 
+	connect(Options::instance(),SIGNAL(optionsOpened()),SLOT(onOptionsOpened()));
+	connect(Options::instance(),SIGNAL(optionsChanged(OptionsNode)),SLOT(onOptionsChanged(OptionsNode)));
+
 	return FMainWindowPlugin != NULL && FRosterPlugin !=NULL;
 }
 
@@ -121,7 +124,7 @@ bool ClientIcons::initObjects()
 {
 	IconStorage *storage = IconStorage::staticStorage(RSR_STORAGE_CLIENTICONS);
 
-	foreach (QString key, storage->fileKeys())
+	foreach (QString key, storage->fileFirstKeys())
 	{
 		Client client = {storage->fileProperty(key, PROPERTY_CLIENT), storage->getIcon(key)};
 		FClients.insert(key, client);
@@ -142,6 +145,11 @@ bool ClientIcons::initObjects()
 		FRostersViewPlugin->rostersView()->insertLabelHolder(RLHO_CLIENTICONS,this);
 	}
 
+	if (FOptionsManager)
+	{
+		FOptionsManager->insertOptionsHolder(this);
+	}
+
 	return true;
 }
 
@@ -149,10 +157,6 @@ bool ClientIcons::initSettings()
 {
 	Options::setDefaultValue(OPV_ROSTER_CLIENT_ICON_SHOW,true);
 
-	if (FOptionsManager)
-	{
-		FOptionsManager->insertOptionsHolder(this);
-	}
 	return true;
 }
 
@@ -168,14 +172,19 @@ QMultiMap<int, IOptionsWidget *> ClientIcons::optionsWidgets(const QString &ANod
 
 bool ClientIcons::stanzaReadWrite(int AHandlerId, const Jid &AStreamJid, Stanza &AStanza, bool &AAccept)
 {
+	Q_UNUSED(AAccept);
 	if (FSHIPresence.value(AStreamJid) == AHandlerId)
 	{
-		AAccept = true;
 		Jid contactJid = AStanza.from();
-		QDomElement capsElem = AStanza.firstElement("c",NS_CAPS);
-		FContacts.insert(contactJid, capsElem.attribute("node"));
-		updateDataHolder(AStreamJid, contactJid);
-		return AAccept;
+		QString node = AStanza.firstElement("c",NS_CAPS).attribute("node");
+		if (FContacts.value(contactJid) != node)
+		{
+			if (!node.isEmpty())
+				FContacts.insert(contactJid, node);
+			else
+				FContacts.remove(contactJid);
+			updateDataHolder(AStreamJid, contactJid);
+		}
 	}
 	return false;
 }
@@ -193,9 +202,9 @@ QVariant ClientIcons::rosterData(int AOrder, const IRosterIndex *AIndex, int ARo
 	{
 		switch (AIndex->kind())
 		{
-		case RIK_STREAM_ROOT:
 		case RIK_CONTACT:
-		case RIK_CONTACTS_ROOT:
+		//case RIK_STREAM_ROOT:
+		//case RIK_CONTACTS_ROOT:
 			{
 				if (ARole == RDR_CLIENTICONS)
 				{
@@ -250,23 +259,14 @@ void ClientIcons::updateDataHolder(const Jid &streamJid, const Jid &clientJid)
 	if(FRostersModel)
 	{
 		QMultiMap<int, QVariant> findData;
+		if (!streamJid.isEmpty())
+			findData.insert(RDR_STREAM_JID,streamJid.pFull());
 		if (!clientJid.isEmpty())
-			findData.insert(RDR_PREP_FULL_JID,clientJid.pFull());
+			findData.insert(RDR_PREP_BARE_JID,clientJid.pBare());
 		findData.insert(RDR_KIND,RIK_CONTACT);
-		findData.insert(RDR_KIND,RIK_CONTACTS_ROOT);
 
-		foreach (IRosterIndex *index, FRostersModel->streamRoot(streamJid)->findChilds(findData, true))
-		{
-			if(FContacts.contains(index->data(RDR_PREP_FULL_JID).toString()))
-			{
-				FRostersViewPlugin->rostersView()->insertLabel(FClientIconLabelId,index);
-			}
-			else
-			{
-				FRostersViewPlugin->rostersView()->removeLabel(FClientIconLabelId,index);
-			}
-			emit rosterDataChanged(index, RDR_CLIENTICONS);
-		}
+		foreach (IRosterIndex *index, FRostersModel->rootIndex()->findChilds(findData,true))
+			emit rosterDataChanged(index,RDR_CLIENTICONS);
 	}
 }
 
@@ -336,4 +336,4 @@ QIcon ClientIcons::contactIcon(const Jid &contactJid) const
 }
 
 
-Q_EXPORT_PLUGIN2(plg_pepmanager, ClientIcons)
+Q_EXPORT_PLUGIN2(plg_clienticons, ClientIcons)
