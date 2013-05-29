@@ -1,14 +1,129 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <icondef>
   <icon>
-    <key>http://vacuum-im.googlecode.com</key>
-    <client>Vacuum-IM</client>
-    <object mime="image/png">vacuum.png</object>
+    <key>http://apps.radio-t.com/caps</key>
+    <client>AIR Radio-T</client>
+    <object mime="image/png">radiot.png</object>
   </icon>
   <icon>
-    <key>http://qip.ru/caps</key>
-    <client>QIP</client>
-    <object mime="image/png">qip.png</object>
+    <key>http://aqq.eu/</key>
+    <client>AQQ</client>
+    <object mime="image/png">aqq.png</object>
+  </icon>
+  <icon>
+    <key>http://www.asterisk.org/xmpp/client/caps</key>
+    <client>Asterisk</client>
+    <object mime="image/png">asterisk.png</object>
+  </icon>
+  <icon>
+    <key>http://bitlbee.org/xmpp/caps</key>
+    <client>BitlBee</client>
+    <object mime="image/png">bitlbee.png</object>
+  </icon>
+  <icon>
+    <key>http://coccinella.sourceforge.net/protocol/caps</key>
+    <client>Coccinella</client>
+    <object mime="image/png">coccinella.png</object>
+  </icon>
+  <icon>
+    <key>http://gajim.org</key>
+    <client>Gajim</client>
+    <object mime="image/png">gajim.png</object>
+  </icon>
+  <icon>
+    <key>http://mail.google.com/xmpp/client/caps</key>
+    <client>Gmail</client>
+    <object mime="image/png">gmail.png</object>
+  </icon>
+  <icon>
+    <key>http://www.android.com/gtalk/client/caps</key>
+    <client>Gtalk Android</client>
+    <object mime="image/png">gtalk.png</object>
+  </icon>
+  <icon>
+    <key>http://dev.jabbim.cz/jabbim/caps</key>
+    <client>Jabbim</client>
+    <object mime="image/png">jabbim.png</object>
+  </icon>
+  <icon>
+    <key>http://jajc.jrudevels.org/caps</key>
+    <client>JAJC</client>
+    <object mime="image/png">jajc.png</object>
+  </icon>
+  <icon>
+    <key>http://jappix.org/</key>
+    <client>Jappix</client>
+    <object mime="image/png">jappix.png</object>
+  </icon>
+  <icon>
+    <key>https://www.jappix.com/</key>
+    <client>Jappix</client>
+    <object mime="image/png">jappix.png</object>
+  </icon>
+  <icon>
+    <key>http://jasmineicq.ru/caps</key>
+    <client>Jasmine IM</client>
+    <object mime="image/png">jasmine.png</object>
+  </icon>
+  <icon>
+    <key>http://jitsi.org</key>
+    <client>Jitsi</client>
+    <object mime="image/png">jitsi.png</object>
+  </icon>
+  <icon>
+    <key>http://jtalk.ustyugov.net/caps</key>
+    <client>jTalk</client>
+    <object mime="image/png">jtalk.png</object>
+  </icon>
+  <icon>
+    <key>http://kopete.kde.org/jabber/caps</key>
+    <client>Kopete</client>
+    <object mime="image/png">kopete.png</object>
+  </icon>
+  <icon>
+    <key>http://bluendo.com/protocol/caps</key>
+    <client>Lampiro</client>
+    <object mime="image/png">lampiro.png</object>
+  </icon>
+  <icon>
+    <key>http://leechcraft.org/azoth</key>
+    <client>LeechCraft</client>leechcraftazoth.png<object mime="image/png">
+    </object>
+  </icon>
+  <icon>
+    <key>http://agent.mail.ru</key>
+    <client>Mail.Ru Agent</client>
+    <object mime="image/png">mailruagent.png</object>
+  </icon>
+  <icon>
+    <key>http://mcabber.com/caps</key>mabber.png
+    <client>mcabber</client>
+    <object mime="image/png">mabber.png</object>
+  </icon>
+  <icon>
+    <key>http://miranda-im.org/caps</key>
+    <client>Miranda IM</client>
+    <object mime="image/png">mirandaim.png</object>
+  </icon>
+  <icon>
+    <key>http://miranda-ng.org/caps</key>
+    <client>Miranda NG</client>
+    <object mime="image/png">mirandang.png</object>
+  </icon>
+  <icon>
+    <key>http://oneteam.im/caps</key>
+    <client>OneTeam</client>
+    <object mime="image/png">oneteam.png</object>
+  </icon>
+  <icon>
+    <key>http://pandion.im</key>
+    <client>Pandion</client>
+    <object mime="image/png">pandion.png</object>
+  </icon>
+  <icon>
+    <key>http://psi-im.org/caps</key>
+    <client>Psi</client>
+    <object mime="image/png">psi.png</object>
   </icon>
   <icon>
     <key>http://psi-dev.googlecode.com/caps</key>
@@ -16,8 +131,43 @@
     <object mime="image/png">psiplus.png</object>
   </icon>
   <icon>
-    <key>http://miranda-im.org/caps</key>
-    <client>Miranda IM</client>
-    <object mime="image/png">miranda.png</object>
+    <key>http://qip.ru/caps</key>
+    <client>QIP</client>
+    <object mime="image/png">qip.png</object>
+  </icon>
+  <icon>
+    <key>http://qutim.org/</key>
+    <client>qutIM</client>
+    <object mime="image/png">qutim.png</object>
+  </icon>
+  <icon>
+    <key>http://swift.im</key>
+    <client>Swift</client>
+    <object mime="image/png">swift.png</object>
+  </icon>
+  <icon>
+    <key>http://telepathy.freedesktop.org/caps</key>
+    <client>Telepathy</client>
+    <object mime="image/png">telepathy.png</object>
+  </icon>
+  <icon>
+    <key>http://tkabber.jabber.ru/</key>
+    <client>Tkabber</client>
+    <object mime="image/png">tkabber.png</object>
+  </icon>
+  <icon>
+    <key>http://trillian.im/caps</key>
+    <client>Trillian</client>
+    <object mime="image/png">trillian.png</object>
+  </icon>
+  <icon>
+    <key>http://vacuum-im.googlecode.com</key>
+    <client>Vacuum-IM</client>
+    <object mime="image/png">vacuum.png</object>
+  </icon>
+  <icon>
+    <key>http://online.yandex.ru/caps</key>
+    <client>YaOnline</client>
+    <object mime="image/png">yaonline.png</object>
   </icon>
 </icondef>
