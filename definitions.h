@@ -14,7 +14,7 @@
 #define RDHO_CLIENTICONS 1050
 
 //Roster Labels
-#define RLID_CLIENTICONS AdvancedDelegateItem::makeId(AdvancedDelegateItem::MiddleCenter,128,AdvancedDelegateItem::AlignRightOrderMask | 270)
+#define RLID_CLIENTICONS AdvancedDelegateItem::makeId(AdvancedDelegateItem::MiddleCenter,128,AdvancedDelegateItem::AlignRightOrderMask | 280)
 
 //Roster Labels Holder Orders
 #define RLHO_CLIENTICONS 1050
