@@ -43,6 +43,11 @@ CHANGELOG
 =========
   LEGEND: [+]-New feature [*]-Enhancement [-]-Bug fix
 
+  v0.2
+  ------
+  [*] Added icons of popular clients.
+  [-] Label position fix.
+
   v0.1
   ------
   [!] Initial version

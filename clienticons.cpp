@@ -33,7 +33,7 @@ void ClientIcons::pluginInfo(IPluginInfo *APluginInfo)
 {
 	APluginInfo->name = tr("Client Icons");
 	APluginInfo->description = tr("Displays a client icon in the roster");
-	APluginInfo->version = "0.1";
+	APluginInfo->version = "0.2";
 	APluginInfo->author = "Alexey Ivanov aka krab";
 	APluginInfo->homePage = "http://code.google.com/p/vacuum-plugins";
 	APluginInfo->dependences.append(XMPPSTREAMS_UUID);
