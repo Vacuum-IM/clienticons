@@ -96,9 +96,9 @@
     <object mime="image/png">mailruagent.png</object>
   </icon>
   <icon>
-    <key>http://mcabber.com/caps</key>mabber.png
+    <key>http://mcabber.com/caps</key>
     <client>mcabber</client>
-    <object mime="image/png">mabber.png</object>
+    <object mime="image/png">mсabber.png</object>
   </icon>
   <icon>
     <key>http://miranda-im.org/caps</key>
