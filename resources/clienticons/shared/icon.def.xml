@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+ <?xml version="1.0" encoding="utf-8"?>
 <icondef>
   <icon>
     <key>http://apps.radio-t.com/caps</key>
@@ -87,8 +87,8 @@
   </icon>
   <icon>
     <key>http://leechcraft.org/azoth</key>
-    <client>LeechCraft</client>leechcraftazoth.png<object mime="image/png">
-    </object>
+    <client>LeechCraft</client>
+    <object mime="image/png">leechcraftazoth.png</object>
   </icon>
   <icon>
     <key>http://agent.mail.ru</key>
