@@ -43,6 +43,10 @@ CHANGELOG
 =========
   LEGEND: [+]-New feature [*]-Enhancement [-]-Bug fix
 
+  v0.3
+  ------
+  [*] Added icons for mcabber and poezio.
+  [-] icon.def.xml fix.
   v0.2
   ------
   [*] Added icons of popular clients.
