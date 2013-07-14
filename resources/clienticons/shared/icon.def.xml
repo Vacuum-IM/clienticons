@@ -121,6 +121,11 @@
     <object mime="image/png">pandion.png</object>
   </icon>
   <icon>
+    <key>http://sleekxmpp.com/ver/1.1.11</key>
+    <client>Poezio</client>
+    <object mime="image/png">poezio.png</object>
+  </icon>
+  <icon>
     <key>http://psi-im.org/caps</key>
     <client>Psi</client>
     <object mime="image/png">psi.png</object>
