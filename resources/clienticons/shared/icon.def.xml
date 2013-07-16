@@ -31,6 +31,11 @@
     <object mime="image/png">gajim.png</object>
   </icon>
   <icon>
+    <key>http://jabga.ru</key>
+    <client>jTalkmod</client>
+    <object mime="image/png">jtalkmod.png</object>
+  </icon>
+  <icon>
     <key>http://mail.google.com/xmpp/client/caps</key>
     <client>Gmail</client>
     <object mime="image/png">gmail.png</object>
