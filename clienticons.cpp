@@ -238,15 +238,21 @@ AdvancedDelegateItem ClientIcons::rosterLabel(int AOrder, quint32 ALabelId, cons
 	return FRostersViewPlugin->rostersView()->registeredLabel(ALabelId);
 }
 
+
 void ClientIcons::onRostersViewIndexToolTips(IRosterIndex *AIndex, quint32 ALabelId, QMap<int, QString> &AToolTips)
 {
 	if ((ALabelId==AdvancedDelegateItem::DisplayId && RosterKinds.contains(AIndex->kind())) || ALabelId == FClientIconsLabelId)
 	{
-		Jid contactJid = AIndex->data(RDR_FULL_JID).toString();
-		if (!contactClient(contactJid).isEmpty())
+		QStringList resources = AIndex->data(RDR_RESOURCES).toStringList();
+		if (!resources.isEmpty())
 		{
-			QString tooltip = QString("<b>%1</b> %2</div>").arg(tr("Client:")).arg(contactClient(contactJid));
-			AToolTips.insert(RTTO_CLIENTICONS, tooltip);
+			for(int resIndex=0; resIndex<10 && resIndex<resources.count(); resIndex++)
+			{
+				int orderShift = resIndex*100;
+				Jid contactJid = resources.at(resIndex);
+				if (!contactClient(contactJid).isEmpty())
+					AToolTips.insert(RTTO_CLIENTICONS+orderShift, QString("<b>%1</b> %2</div>").arg(tr("Client:")).arg(contactClient(contactJid)));
+			}
 		}
 	}
 }

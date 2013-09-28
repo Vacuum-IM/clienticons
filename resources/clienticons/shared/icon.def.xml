@@ -131,6 +131,11 @@
     <object mime="image/png">poezio.png</object>
   </icon>
   <icon>
+    <key>http://pidgin.im/</key>
+    <client>Pidgin</client>
+    <object mime="image/png">pidgin.png</object>
+  </icon>
+  <icon>
     <key>http://psi-im.org/caps</key>
     <client>Psi</client>
     <object mime="image/png">psi.png</object>

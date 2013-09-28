@@ -1,8 +1,6 @@
 #ifndef CLIENTICONS_H
 #define CLIENTICONS_H
 
-#include <QDebug>
-
 #include "iclienticons.h"
 
 #include <interfaces/imainwindow.h>
