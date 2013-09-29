@@ -33,7 +33,7 @@ void ClientIcons::pluginInfo(IPluginInfo *APluginInfo)
 {
 	APluginInfo->name = tr("Client Icons");
 	APluginInfo->description = tr("Displays a client icon in the roster");
-	APluginInfo->version = "0.3";
+	APluginInfo->version = "0.4";
 	APluginInfo->author = "Alexey Ivanov aka krab";
 	APluginInfo->homePage = "http://code.google.com/p/vacuum-plugins";
 	APluginInfo->dependences.append(XMPPSTREAMS_UUID);
@@ -241,7 +241,7 @@ AdvancedDelegateItem ClientIcons::rosterLabel(int AOrder, quint32 ALabelId, cons
 
 void ClientIcons::onRostersViewIndexToolTips(IRosterIndex *AIndex, quint32 ALabelId, QMap<int, QString> &AToolTips)
 {
-	if ((ALabelId==AdvancedDelegateItem::DisplayId && RosterKinds.contains(AIndex->kind())) || ALabelId == FClientIconsLabelId)
+	if ((ALabelId==AdvancedDelegateItem::DisplayId && RosterKinds.contains(AIndex->kind())))
 	{
 		QStringList resources = AIndex->data(RDR_RESOURCES).toStringList();
 		if (!resources.isEmpty())

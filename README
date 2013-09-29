@@ -43,6 +43,11 @@ CHANGELOG
 =========
   LEGEND: [+]-New feature [*]-Enhancement [-]-Bug fix
 
+  v0.4
+  ------
+  [+] Pidgin.
+  [-] Support rostersviewplugin code changes.
+
   v0.3
   ------
   [*] Added icons for mcabber and poezio.
