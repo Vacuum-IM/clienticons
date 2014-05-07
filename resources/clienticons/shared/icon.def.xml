@@ -35,6 +35,12 @@
     <client>jTalkmod</client>
     <object mime="image/png">jtalkmod.png</object>
   </icon>
+    <icon>
+    <key>httр://kadu.im/caps</key>
+    <client>Kadu</client>
+    <object mime="image/png">kadu.png</object>
+  </icon>
+
   <icon>
     <key>http://mail.google.com/xmpp/client/caps</key>
     <client>Gmail</client>
