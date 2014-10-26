@@ -178,7 +178,7 @@ bool ClientIcons::stanzaReadWrite(int AHandlerId, const Jid &AStreamJid, Stanza 
 		QString node = AStanza.firstElement("c",NS_CAPS).attribute("node");
 		if (FContacts.value(contactJid) != node)
 		{
-			if (!node.isEmpty())
+			if (!node.isEmpty() && AStanza.type()!="error")
 				FContacts.insert(contactJid, node);
 			else
 				FContacts.remove(contactJid);
