@@ -7,12 +7,12 @@
 #include <interfaces/inotifications.h>
 #include <interfaces/ioptionsmanager.h>
 #include <interfaces/ipluginmanager.h>
-#include <interfaces/ipresence.h>
-#include <interfaces/iroster.h>
+#include <interfaces/ipresencemanager.h>
+#include <interfaces/irostermanager.h>
 #include <interfaces/irostersmodel.h>
 #include <interfaces/irostersview.h>
 #include <interfaces/istanzaprocessor.h>
-#include <interfaces/ixmppstreams.h>
+#include <interfaces/ixmppstreammanager.h>
 
 #include <definitions/menuicons.h>
 #include <definitions/namespaces.h>
@@ -41,10 +41,10 @@ class ClientIcons :
 	public IClientIcons,
 	public IRosterDataHolder,
 	public IRostersLabelHolder,
-	public IOptionsHolder
+	public IOptionsDialogHolder
 {
 	Q_OBJECT;
-	Q_INTERFACES(IPlugin IStanzaHandler IRosterDataHolder IRostersLabelHolder IOptionsHolder IClientIcons IRosterDataHolder);
+	Q_INTERFACES(IPlugin IStanzaHandler IRosterDataHolder IRostersLabelHolder IOptionsDialogHolder IClientIcons IRosterDataHolder);
 
 public:
 	ClientIcons();
@@ -58,7 +58,7 @@ public:
 	virtual bool initSettings();
 	virtual bool startPlugin() { return true; }
 	//IOptionsHolder
-	virtual QMultiMap<int, IOptionsWidget *> optionsWidgets(const QString &ANodeId, QWidget *AParent);
+	virtual QMultiMap<int, IOptionsDialogWidget *> optionsDialogWidgets(const QString &ANodeId, QWidget *AParent);
 	//IStanzaHandler
 	virtual bool stanzaReadWrite(int AHandlerId, const Jid &AStreamJid, Stanza &AStanza, bool &AAccept);
 	//IRosterDataHolder
@@ -98,12 +98,11 @@ protected:
 
 private:
 	IMainWindowPlugin *FMainWindowPlugin;
-	IPresencePlugin *FPresencePlugin;
+	IPresenceManager *FPresenceManager;
 	IStanzaProcessor *FStanzaProcessor;
-	IXmppStreams *FXmppStreams;
+	IXmppStreamManager *FXmppStreamManager;
 	IOptionsManager *FOptionsManager;
-	IRoster *FRoster;
-	IRosterPlugin *FRosterPlugin;
+	IRosterManager *FRosterManager;
 	IRostersModel *FRostersModel;
 	IRostersViewPlugin *FRostersViewPlugin;
 	INotifications *FNotifications;

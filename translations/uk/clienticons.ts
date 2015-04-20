@@ -8,15 +8,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show client icons</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Client:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Displays a client icon in the roster</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show contact application icon</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

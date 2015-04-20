@@ -9,12 +9,11 @@ static const QList<int> RosterKinds = QList<int>() << RIK_CONTACT << RIK_CONTACT
 ClientIcons::ClientIcons()
 {
 	FMainWindowPlugin = NULL;
-	FPresencePlugin = NULL;
-	FXmppStreams = NULL;
+	FPresenceManager = NULL;
+	FXmppStreamManager = NULL;
 	FStanzaProcessor = NULL;
 	FOptionsManager = NULL;
-	FRoster = NULL;
-	FRosterPlugin = NULL;
+	FRosterManager = NULL;
 	FRostersModel = NULL;
 	FRostersViewPlugin = NULL;
 	FClientIconsLabelId = 0;
@@ -54,38 +53,32 @@ bool ClientIcons::initConnections(IPluginManager *APluginManager, int &AInitOrde
 	if (plugin)
 		FStanzaProcessor = qobject_cast<IStanzaProcessor *>(plugin->instance());
 
-	plugin = APluginManager->pluginInterface("IXmppStreams").value(0, NULL);
+	plugin = APluginManager->pluginInterface("IXmppStreamManager").value(0, NULL);
 	if(plugin)
 	{
-		FXmppStreams = qobject_cast<IXmppStreams *>(plugin->instance());
-		if(FXmppStreams)
+		FXmppStreamManager = qobject_cast<IXmppStreamManager *>(plugin->instance());
+		if(FXmppStreamManager)
 		{
-			connect(FXmppStreams->instance(),SIGNAL(opened(IXmppStream *)),SLOT(onStreamOpened(IXmppStream *)));
-			connect(FXmppStreams->instance(),SIGNAL(closed(IXmppStream *)),SLOT(onStreamClosed(IXmppStream *)));
+			connect(FXmppStreamManager->instance(),SIGNAL(streamOpened(IXmppStream *)),SLOT(onStreamOpened(IXmppStream *)));
+			connect(FXmppStreamManager->instance(),SIGNAL(streamClosed(IXmppStream *)),SLOT(onStreamClosed(IXmppStream *)));
 		}
 	}
 
-	plugin = APluginManager->pluginInterface("IPresencePlugin").value(0, NULL);
+	plugin = APluginManager->pluginInterface("IPresenceManager").value(0, NULL);
 	if(plugin)
 	{
-		FPresencePlugin = qobject_cast<IPresencePlugin *>(plugin->instance());
-		if(FPresencePlugin)
+		FPresenceManager = qobject_cast<IPresenceManager *>(plugin->instance());
+		if(FPresenceManager)
 		{
-			connect(FPresencePlugin->instance(),SIGNAL(contactStateChanged(const Jid &, const Jid &, bool)),
+			connect(FPresenceManager->instance(),SIGNAL(contactStateChanged(const Jid &, const Jid &, bool)),
 					SLOT(onContactStateChanged(const Jid &, const Jid &, bool)));
 		}
 	}
 
-	plugin = APluginManager->pluginInterface("IRoster").value(0, NULL);
-	if(plugin)
-	{
-		FRoster = qobject_cast<IRoster *>(plugin->instance());
-	}
-
-	plugin = APluginManager->pluginInterface("IRosterPlugin").value(0,NULL);
+	plugin = APluginManager->pluginInterface("IRosterManager").value(0,NULL);
 	if (plugin)
 	{
-		FRosterPlugin = qobject_cast<IRosterPlugin *>(plugin->instance());
+		FRosterManager = qobject_cast<IRosterManager *>(plugin->instance());
 	}
 
 	plugin = APluginManager->pluginInterface("IRostersModel").value(0, NULL);
@@ -116,7 +109,7 @@ bool ClientIcons::initConnections(IPluginManager *APluginManager, int &AInitOrde
 		}
 	}
 
-	return FMainWindowPlugin != NULL && FRosterPlugin != NULL && FPresencePlugin != NULL && FXmppStreams != NULL;
+	return FMainWindowPlugin != NULL && FRosterManager != NULL && FPresenceManager != NULL && FXmppStreamManager != NULL;
 }
 
 bool ClientIcons::initObjects()
@@ -146,7 +139,7 @@ bool ClientIcons::initObjects()
 
 	if (FOptionsManager)
 	{
-		FOptionsManager->insertOptionsHolder(this);
+		FOptionsManager->insertOptionsDialogHolder(this);
 	}
 
 	return true;
@@ -159,12 +152,12 @@ bool ClientIcons::initSettings()
 	return true;
 }
 
-QMultiMap<int, IOptionsWidget *> ClientIcons::optionsWidgets(const QString &ANodeId, QWidget *AParent)
+QMultiMap<int, IOptionsDialogWidget *> ClientIcons::optionsDialogWidgets(const QString &ANodeId, QWidget *AParent)
 {
-	QMultiMap<int, IOptionsWidget *> widgets;
-	if (FOptionsManager && ANodeId == OPN_ROSTER)
+	QMultiMap<int, IOptionsDialogWidget *> widgets;
+	if (FOptionsManager && ANodeId==OPN_ROSTERVIEW)
 	{
-		widgets.insertMulti(OWO_ROSTER_CLIENT_ICONS, FOptionsManager->optionsNodeWidget(Options::node(OPV_ROSTER_CLIENT_ICON_SHOW),tr("Show client icons"),AParent));
+		widgets.insertMulti(OWO_ROSTER_CLIENTICONS,FOptionsManager->newOptionsDialogWidget(Options::node(OPV_ROSTER_CLIENT_ICON_SHOW),tr("Show contact application icon"),AParent));
 	}
 	return widgets;
 }

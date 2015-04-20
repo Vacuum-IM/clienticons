@@ -8,7 +8,7 @@
 #define OPV_ROSTER_CLIENT_ICON_SHOW "roster.client.icon.show"
 
 //Option Widget Order
-#define OWO_ROSTER_CLIENT_ICONS 515
+#define OWO_ROSTER_CLIENTICONS 145
 
 //Roster Data Holder Orders
 #define RDHO_CLIENTICONS 1050

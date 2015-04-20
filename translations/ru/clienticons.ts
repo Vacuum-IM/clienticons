@@ -8,16 +8,16 @@
         <translation>Значки клиентов</translation>
     </message>
     <message>
-        <source>Show client icons</source>
-        <translation>Показывать значки клиентов</translation>
-    </message>
-    <message>
         <source>Client:</source>
         <translation>Клиент:</translation>
     </message>
     <message>
         <source>Displays a client icon in the roster</source>
         <translation>Отображает значки клиентов в ростере</translation>
+    </message>
+    <message>
+        <source>Show contact application icon</source>
+        <translation>Показывать инокну приложения контакта</translation>
     </message>
 </context>
 </TS>
