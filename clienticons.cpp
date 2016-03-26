@@ -1,5 +1,7 @@
 #include "clienticons.h"
 
+#include <definitions/stanzahandlerorders.h>
+
 #define RDR_CLIENTICONS 460
 #define PROPERTY_CLIENT "client"
 #define SHC_PRESENCE  "/presence/c[@xmlns="NS_CAPS"]"
