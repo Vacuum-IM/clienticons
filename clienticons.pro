@@ -3,7 +3,7 @@ include(qmake/config.inc)
 
 #Project configuration
 TARGET              = clienticons
-QT                  = core gui xml
+QT                  = core gui xml widgets
 include(clienticons.pri)
 
 #Default progect configuration

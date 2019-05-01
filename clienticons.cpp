@@ -34,7 +34,7 @@ void ClientIcons::pluginInfo(IPluginInfo *APluginInfo)
 {
 	APluginInfo->name = tr("Client Icons");
 	APluginInfo->description = tr("Displays a client icon in the roster");
-	APluginInfo->version = "0.4";
+	APluginInfo->version = "0.5.0";
 	APluginInfo->author = "Alexey Ivanov aka krab";
 	APluginInfo->homePage = "http://code.google.com/p/vacuum-plugins";
 	APluginInfo->dependences.append(XMPPSTREAMS_UUID);
@@ -332,6 +332,3 @@ QIcon ClientIcons::contactIcon(const Jid &contactJid) const
 {
 	return FClients.value(FContacts.value(contactJid)).icon;
 }
-
-
-Q_EXPORT_PLUGIN2(plg_clienticons, ClientIcons)

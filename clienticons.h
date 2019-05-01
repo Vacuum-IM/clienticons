@@ -45,6 +45,7 @@ class ClientIcons :
 {
 	Q_OBJECT;
 	Q_INTERFACES(IPlugin IStanzaHandler IRosterDataHolder IRostersLabelHolder IOptionsDialogHolder IClientIcons IRosterDataHolder);
+	Q_PLUGIN_METADATA(IID "org.vacuum-im.plugins.ClientIcons");
 
 public:
 	ClientIcons();
