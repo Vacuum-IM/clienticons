@@ -142,12 +142,12 @@
     <object mime="image/png">pidgin.png</object>
   </icon>
   <icon>
-    <key>http://psi-im.org/caps</key>
+    <key>https://psi-im.org</key>
     <client>Psi</client>
     <object mime="image/png">psi.png</object>
   </icon>
   <icon>
-    <key>http://psi-dev.googlecode.com/caps</key>
+    <key>https://psi-plus.com</key>
     <client>Psi+</client>
     <object mime="image/png">psiplus.png</object>
   </icon>
